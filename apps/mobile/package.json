@@ -24,7 +24,8 @@
     "react-native-screens": "^4.19.0",
     "react-native-svg": "^15.15.1",
     "react-native-vector-icons": "^10.3.0",
-    "react-redux": "^9.2.0"
+    "react-redux": "^9.2.0",
+    "@healthtrack/shared": "file:../../packages/shared"
   },
   "private": true
 }
