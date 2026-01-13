@@ -1,0 +1,28 @@
+# Node modules
+node_modules/
+
+# React Native
+*.expo
+.expo/
+.expo-shared/
+
+# Android
+android/.gradle
+android/app/build/
+android/build/
+
+# iOS
+ios/build/
+Pods/
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db 
