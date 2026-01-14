@@ -4,9 +4,7 @@ import {
   updateWaterIntake, 
   updateCaloriesBurned, 
   updateExerciseMinutes, 
-  updateSleepHours,
-  updateDailyGoals,
-  resetDailyMetrics
+  updateSleepHours 
 } from '../store/healthSlice';
 
 export const useHealth = () => {
@@ -15,7 +13,11 @@ export const useHealth = () => {
 
   return {
     // State
-    ...healthState,
+    waterIntake: healthState.waterIntake,
+    caloriesBurned: healthState.caloriesBurned,
+    exerciseMinutes: healthState.exerciseMinutes,
+    sleepHours: healthState.sleepHours,
+    dailyGoals: healthState.dailyGoals,
     
     // Actions
     updateWaterIntake: (amount: number) => 
@@ -29,11 +31,5 @@ export const useHealth = () => {
     
     updateSleepHours: (hours: number) => 
       dispatch(updateSleepHours(hours)),
-    
-    updateDailyGoals: (goals: any) => 
-      dispatch(updateDailyGoals(goals)),
-    
-    resetDailyMetrics: () => 
-      dispatch(resetDailyMetrics()),
   };
 };
