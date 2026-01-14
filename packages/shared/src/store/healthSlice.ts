@@ -4,10 +4,10 @@ import { HealthState, HealthMetric, DailyGoal, UserProfile } from '../types';
 const initialState: HealthState = {
   metrics: [],
   dailyGoals: {
-    water: 2000,    // 2L water
-    calories: 2000, // 2000 kcal
-    exercise: 30,   // 30 minutes
-    sleep: 8,       // 8 hours
+    water: 2000,
+    calories: 2000,
+    exercise: 30,
+    sleep: 8,
   },
   userProfile: null,
   isLoading: false,
@@ -22,62 +22,41 @@ const healthSlice = createSlice({
   name: 'health',
   initialState,
   reducers: {
-    addMetric: (state, action: PayloadAction<Omit<HealthMetric, 'id' | 'createdAt'>>) => {
-      const newMetric: HealthMetric = {
-        ...action.payload,
-        id: Date.now().toString(),
-        createdAt: new Date(),
-      };
-      state.metrics.push(newMetric);
-    },
-    
-    updateDailyGoals: (state, action: PayloadAction<Partial<DailyGoal>>) => {
-      state.dailyGoals = { ...state.dailyGoals, ...action.payload };
-    },
-    
-    setUserProfile: (state, action: PayloadAction<UserProfile>) => {
-      state.userProfile = action.payload;
-    },
-    
-    setLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
-    
     updateWaterIntake: (state, action: PayloadAction<number>) => {
       state.waterIntake = action.payload;
     },
-    
     updateCaloriesBurned: (state, action: PayloadAction<number>) => {
       state.caloriesBurned = action.payload;
     },
-    
     updateExerciseMinutes: (state, action: PayloadAction<number>) => {
       state.exerciseMinutes = action.payload;
     },
-    
     updateSleepHours: (state, action: PayloadAction<number>) => {
       state.sleepHours = action.payload;
     },
-    
+    updateDailyGoals: (state, action: PayloadAction<Partial<DailyGoal>>) => {
+      state.dailyGoals = { ...state.dailyGoals, ...action.payload };
+    },
     resetDailyMetrics: (state) => {
       state.waterIntake = 0;
       state.caloriesBurned = 0;
       state.exerciseMinutes = 0;
       state.sleepHours = 0;
     },
+    setUserProfile: (state, action: PayloadAction<UserProfile>) => {
+      state.userProfile = action.payload;
+    },
   },
 });
 
 export const {
-  addMetric,
-  updateDailyGoals,
-  setUserProfile,
-  setLoading,
   updateWaterIntake,
   updateCaloriesBurned,
   updateExerciseMinutes,
   updateSleepHours,
+  updateDailyGoals,
   resetDailyMetrics,
+  setUserProfile,
 } = healthSlice.actions;
 
 export default healthSlice.reducer;
