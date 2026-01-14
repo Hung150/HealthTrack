@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { healthSlice } from '@healthtrack/shared';
+import healthReducer from './healthSlice';
 
 export const store = configureStore({
   reducer: {
-    health: healthSlice.reducer,
+    health: healthReducer,
   },
 });
 
