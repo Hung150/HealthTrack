@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HealthState, HealthMetric, DailyGoal, UserProfile } from '../types';
+import { HealthState, DailyGoal, UserProfile } from '../types';
 
 const initialState: HealthState = {
   metrics: [],
@@ -18,7 +18,7 @@ const initialState: HealthState = {
   sleepHours: 0,
 };
 
-const healthSlice = createSlice({
+export const healthSlice = createSlice({
   name: 'health',
   initialState,
   reducers: {
