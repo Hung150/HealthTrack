@@ -4,14 +4,12 @@ import {
   updateWaterIntake, 
   updateCaloriesBurned, 
   updateExerciseMinutes, 
-  updateSleepHours,
-  updateDailyGoals,  // ← THÊM DÒNG NÀY
-  resetDailyMetrics
+  updateSleepHours
 } from '../store/healthSlice';
 
 export const useHealth = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const healthState = useSelector((state: RootState) => state.health);
+  const dispatch = useDispatch();
+  const healthState = useSelector((state) => state.health);
 
   return {
     // State
@@ -22,22 +20,16 @@ export const useHealth = () => {
     dailyGoals: healthState.dailyGoals,
     
     // Actions
-    updateWaterIntake: (amount: number) => 
+    updateWaterIntake: (amount) => 
       dispatch(updateWaterIntake(amount)),
     
-    updateCaloriesBurned: (calories: number) => 
+    updateCaloriesBurned: (calories) => 
       dispatch(updateCaloriesBurned(calories)),
     
-    updateExerciseMinutes: (minutes: number) => 
+    updateExerciseMinutes: (minutes) => 
       dispatch(updateExerciseMinutes(minutes)),
     
-    updateSleepHours: (hours: number) => 
+    updateSleepHours: (hours) => 
       dispatch(updateSleepHours(hours)),
-    
-    updateDailyGoals: (goals: Partial<RootState['health']['dailyGoals']>) => 
-      dispatch(updateDailyGoals(goals)),  // ← THÊM DÒNG NÀY
-    
-    resetDailyMetrics: () => 
-      dispatch(resetDailyMetrics()),
   };
 };
