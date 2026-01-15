@@ -2,7 +2,11 @@ import React from 'react';
 import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { Card, Title, ProgressBar, Button } from 'react-native-paper';
 import { useHealth } from '../hooks/useHealth';
-import { calculateProgress } from '@healthtrack/shared';
+
+const calculateProgress = (current: number, goal: number): number => {
+  if (goal === 0) return 0;
+  return Math.min(Math.round((current / goal) * 100), 100);
+};
 
 const DashboardScreen = () => {
   const {
