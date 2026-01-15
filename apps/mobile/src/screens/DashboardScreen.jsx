@@ -3,7 +3,7 @@ import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-nati
 import { Card, Title, ProgressBar, Button } from 'react-native-paper';
 import { useHealth } from '../hooks/useHealth';
 
-const calculateProgress = (current: number, goal: number): number => {
+const calculateProgress = (current, goal) => {
   if (goal === 0) return 0;
   return Math.min(Math.round((current / goal) * 100), 100);
 };
