@@ -6,6 +6,3 @@ export const store = configureStore({
     health: healthReducer,
   },
 });
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
