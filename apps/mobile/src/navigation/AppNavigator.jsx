@@ -5,18 +5,23 @@ import DashboardScreen from '../screens/DashboardScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
-export type RootStackParamList = {
-  Dashboard: undefined;
-  History: undefined;
-  Settings: undefined;
-};
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator();
 
 const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Dashboard">
+      <Stack.Navigator 
+        initialRouteName="Dashboard"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#1e90ff',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
         <Stack.Screen 
           name="Dashboard" 
           component={DashboardScreen}
@@ -25,7 +30,7 @@ const AppNavigator = () => {
         <Stack.Screen 
           name="History" 
           component={HistoryScreen}
-          options={{ title: 'History' }}
+          options={{ title: 'Health History' }}
         />
         <Stack.Screen 
           name="Settings" 
