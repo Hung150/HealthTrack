@@ -4,7 +4,7 @@ import { Card, Title, DataTable } from 'react-native-paper';
 import { useHealth } from '../hooks/useHealth';
 
 const HistoryScreen = () => {
-  const { metrics } = useHealth();
+  const { waterIntake, caloriesBurned, exerciseMinutes, sleepHours } = useHealth();
 
   return (
     <ScrollView style={styles.container}>
