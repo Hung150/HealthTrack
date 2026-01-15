@@ -1,0 +1,42 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+const initialState = {
+  waterIntake: 0,
+  caloriesBurned: 0,
+  exerciseMinutes: 0,
+  sleepHours: 0,
+  dailyGoals: {
+    water: 2000,
+    calories: 2000,
+    exercise: 30,
+    sleep: 8,
+  },
+};
+
+const healthSlice = createSlice({
+  name: 'health',
+  initialState,
+  reducers: {
+    updateWaterIntake: (state, action) => {
+      state.waterIntake = action.payload;
+    },
+    updateCaloriesBurned: (state, action) => {
+      state.caloriesBurned = action.payload;
+    },
+    updateExerciseMinutes: (state, action) => {
+      state.exerciseMinutes = action.payload;
+    },
+    updateSleepHours: (state, action) => {
+      state.sleepHours = action.payload;
+    },
+  },
+});
+
+export const {
+  updateWaterIntake,
+  updateCaloriesBurned,
+  updateExerciseMinutes,
+  updateSleepHours,
+} = healthSlice.actions;
+
+export default healthSlice.reducer;
