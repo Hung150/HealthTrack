@@ -4,7 +4,9 @@ import {
   updateWaterIntake, 
   updateCaloriesBurned, 
   updateExerciseMinutes, 
-  updateSleepHours 
+  updateSleepHours,
+  updateDailyGoals,  // ← THÊM DÒNG NÀY
+  resetDailyMetrics
 } from '../store/healthSlice';
 
 export const useHealth = () => {
@@ -31,5 +33,11 @@ export const useHealth = () => {
     
     updateSleepHours: (hours: number) => 
       dispatch(updateSleepHours(hours)),
+    
+    updateDailyGoals: (goals: Partial<RootState['health']['dailyGoals']>) => 
+      dispatch(updateDailyGoals(goals)),  // ← THÊM DÒNG NÀY
+    
+    resetDailyMetrics: () => 
+      dispatch(resetDailyMetrics()),
   };
 };
