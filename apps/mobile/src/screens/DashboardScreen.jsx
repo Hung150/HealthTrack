@@ -1,6 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { Card, Title, ProgressBar } from 'react-native-paper';
+import { 
+  View, 
+  StyleSheet, 
+  ScrollView, 
+  Text, 
+  TouchableOpacity 
+} from 'react-native';
+// XÓA: import { Card, Title, ProgressBar } from 'react-native-paper';
 import { useHealth } from '../hooks/useHealth';
 
 const calculateProgress = (current, goal) => {
@@ -37,12 +43,19 @@ const DashboardScreen = () => {
     <ScrollView style={styles.container}>
       <Text style={styles.title}>HealthTrack Dashboard</Text>
       
-      {/* Water Card */}
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>💧 Water Intake</Title>
+      {/* Water Card - Dùng View thay Card */}
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>💧 Water Intake</Text>
           <Text>{waterIntake}ml / {dailyGoals.water}ml</Text>
-          <ProgressBar progress={waterProgress / 100} color="#1e90ff" style={styles.progressBar} />
+          <View style={styles.progressBarBackground}>
+            <View 
+              style={[
+                styles.progressBarFill, 
+                { width: `${waterProgress}%`, backgroundColor: '#1e90ff' }
+              ]} 
+            />
+          </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity 
               style={styles.button} 
@@ -57,15 +70,22 @@ const DashboardScreen = () => {
               <Text style={styles.buttonText}>+500ml</Text>
             </TouchableOpacity>
           </View>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
 
       {/* Exercise Card */}
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>🏃 Exercise</Title>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>🏃 Exercise</Text>
           <Text>{exerciseMinutes}min / {dailyGoals.exercise}min</Text>
-          <ProgressBar progress={exerciseProgress / 100} color="#4CAF50" style={styles.progressBar} />
+          <View style={styles.progressBarBackground}>
+            <View 
+              style={[
+                styles.progressBarFill, 
+                { width: `${exerciseProgress}%`, backgroundColor: '#4CAF50' }
+              ]} 
+            />
+          </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity 
               style={styles.button} 
@@ -80,15 +100,22 @@ const DashboardScreen = () => {
               <Text style={styles.buttonText}>+30min</Text>
             </TouchableOpacity>
           </View>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
 
       {/* Calories Card */}
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>🔥 Calories Burned</Title>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>🔥 Calories Burned</Text>
           <Text>{caloriesBurned}kcal / {dailyGoals.calories}kcal</Text>
-          <ProgressBar progress={caloriesProgress / 100} color="#FF6B6B" style={styles.progressBar} />
+          <View style={styles.progressBarBackground}>
+            <View 
+              style={[
+                styles.progressBarFill, 
+                { width: `${caloriesProgress}%`, backgroundColor: '#FF6B6B' }
+              ]} 
+            />
+          </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity 
               style={styles.button} 
@@ -103,15 +130,22 @@ const DashboardScreen = () => {
               <Text style={styles.buttonText}>+300kcal</Text>
             </TouchableOpacity>
           </View>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
 
       {/* Sleep Card */}
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>😴 Sleep</Title>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={styles.cardTitle}>😴 Sleep</Text>
           <Text>{sleepHours}h / {dailyGoals.sleep}h</Text>
-          <ProgressBar progress={sleepProgress / 100} color="#9C27B0" style={styles.progressBar} />
+          <View style={styles.progressBarBackground}>
+            <View 
+              style={[
+                styles.progressBarFill, 
+                { width: `${sleepProgress}%`, backgroundColor: '#9C27B0' }
+              ]} 
+            />
+          </View>
           <View style={styles.buttonRow}>
             <TouchableOpacity 
               style={styles.button} 
@@ -126,13 +160,15 @@ const DashboardScreen = () => {
               <Text style={styles.buttonText}>+2h</Text>
             </TouchableOpacity>
           </View>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
 
       {/* Reset Button Card */}
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title style={{ textAlign: 'center', color: '#ff6b6b' }}>🔄 Reset Daily Metrics</Title>
+      <View style={styles.card}>
+        <View style={styles.cardContent}>
+          <Text style={[styles.cardTitle, { textAlign: 'center', color: '#ff6b6b' }]}>
+            🔄 Reset Daily Metrics
+          </Text>
           <Text style={{ textAlign: 'center', marginBottom: 15, color: '#666' }}>
             Reset all metrics to zero
           </Text>
@@ -147,8 +183,8 @@ const DashboardScreen = () => {
           <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 12, color: '#888' }}>
             Data is automatically saved
           </Text>
-        </Card.Content>
-      </Card>
+        </View>
+      </View>
     </ScrollView>
   );
 };
@@ -168,11 +204,31 @@ const styles = StyleSheet.create({
   },
   card: {
     marginBottom: 16,
+    backgroundColor: '#fff',
+    borderRadius: 8,
     elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  progressBar: {
-    marginVertical: 8,
+  cardContent: {
+    padding: 16,
+  },
+  cardTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  progressBarBackground: {
     height: 10,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 5,
+    marginVertical: 8,
+    overflow: 'hidden',
+  },
+  progressBarFill: {
+    height: '100%',
     borderRadius: 5,
   },
   buttonRow: {
