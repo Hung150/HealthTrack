@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
-import { Provider as PaperProvider } from 'react-native-paper';
+// XÓA: import { Provider as PaperProvider } from 'react-native-paper';
 import { storePromise } from './src/store';
-import AppNavigator from './src/navigation'; // Import navigation
+import AppNavigator from './src/navigation';
 
 export default function App() {
   const [store, setStore] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load store async với persisted state
     const loadStore = async () => {
       try {
         const loadedStore = await storePromise;
@@ -44,9 +43,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <PaperProvider>
-        <AppNavigator /> {/* Thay DashboardScreen bằng AppNavigator */}
-      </PaperProvider>
+      {/* XÓA: <PaperProvider> */}
+        <AppNavigator />
+      {/* XÓA: </PaperProvider> */}
     </Provider>
   );
 }
