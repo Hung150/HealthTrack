@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { storePromise } from './src/store';
-import DashboardScreen from './src/screens/DashboardScreen';
+import AppNavigator from './src/navigation'; // Import navigation
 
 export default function App() {
   const [store, setStore] = useState(null);
@@ -45,7 +45,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <PaperProvider>
-        <DashboardScreen />
+        <AppNavigator /> {/* Thay DashboardScreen bằng AppNavigator */}
       </PaperProvider>
     </Provider>
   );
