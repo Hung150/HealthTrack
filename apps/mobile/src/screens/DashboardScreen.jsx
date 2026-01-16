@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
-import { Card, Title, ProgressBar, Button } from 'react-native-paper';
+import { Card, Title, ProgressBar } from 'react-native-paper';
 import { useHealth } from '../hooks/useHealth';
 
 const calculateProgress = (current, goal) => {
@@ -25,6 +25,13 @@ const DashboardScreen = () => {
   const caloriesProgress = calculateProgress(caloriesBurned, dailyGoals.calories);
   const exerciseProgress = calculateProgress(exerciseMinutes, dailyGoals.exercise);
   const sleepProgress = calculateProgress(sleepHours, dailyGoals.sleep);
+
+  const handleResetAll = () => {
+    updateWaterIntake(0);
+    updateCaloriesBurned(0);
+    updateExerciseMinutes(0);
+    updateSleepHours(0);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -121,6 +128,27 @@ const DashboardScreen = () => {
           </View>
         </Card.Content>
       </Card>
+
+      {/* Reset Button Card */}
+      <Card style={styles.card}>
+        <Card.Content>
+          <Title style={{ textAlign: 'center', color: '#ff6b6b' }}>🔄 Reset Daily Metrics</Title>
+          <Text style={{ textAlign: 'center', marginBottom: 15, color: '#666' }}>
+            Reset all metrics to zero
+          </Text>
+          <View style={styles.buttonRow}>
+            <TouchableOpacity 
+              style={[styles.resetButton, { backgroundColor: '#ff6b6b' }]}
+              onPress={handleResetAll}
+            >
+              <Text style={styles.resetButtonText}>Reset All to Zero</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={{ textAlign: 'center', marginTop: 10, fontSize: 12, color: '#888' }}>
+            Data is automatically saved
+          </Text>
+        </Card.Content>
+      </Card>
     </ScrollView>
   );
 };
@@ -161,6 +189,19 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  resetButton: {
+    backgroundColor: '#ff6b6b',
+    paddingHorizontal: 25,
+    paddingVertical: 12,
+    borderRadius: 8,
+    flex: 1,
+    alignItems: 'center',
+  },
+  resetButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
 
