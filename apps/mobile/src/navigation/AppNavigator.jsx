@@ -2,7 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { MaterialCommunityIcons } from 'react-native-vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import DashboardScreen from '../screens/DashboardScreen';
 import HistoryScreen from '../screens/HistoryScreen';
@@ -32,13 +32,27 @@ function MainTabs() {
         },
         tabBarActiveTintColor: '#1e90ff',
         tabBarInactiveTintColor: 'gray',
+        tabBarStyle: {
+          backgroundColor: '#ffffff',
+          borderTopWidth: 1,
+          borderTopColor: '#f0f0f0',
+          height: 60,
+          paddingBottom: 8,
+          paddingTop: 8,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+        },
         headerStyle: {
           backgroundColor: '#1e90ff',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
           fontWeight: 'bold',
+          fontSize: 20,
         },
+        headerTitleAlign: 'center',
       })}
     >
       <Tab.Screen 
@@ -46,6 +60,7 @@ function MainTabs() {
         component={DashboardScreen}
         options={{
           title: 'HealthTrack Dashboard',
+          tabBarLabel: 'Dashboard',
         }}
       />
       <Tab.Screen 
@@ -53,6 +68,7 @@ function MainTabs() {
         component={HistoryScreen}
         options={{
           title: 'Health History',
+          tabBarLabel: 'History',
         }}
       />
       <Tab.Screen 
@@ -60,6 +76,7 @@ function MainTabs() {
         component={SettingsScreen}
         options={{
           title: 'Settings',
+          tabBarLabel: 'Settings',
         }}
       />
     </Tab.Navigator>
@@ -75,7 +92,13 @@ export default function AppNavigator() {
           headerShown: false,
         }}
       >
-        <Stack.Screen name="Main" component={MainTabs} />
+        <Stack.Screen 
+          name="Main" 
+          component={MainTabs} 
+          options={{
+            headerShown: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
