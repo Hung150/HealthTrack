@@ -1,97 +1,45 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Card, Title, Switch, List } from 'react-native-paper';
-import { useHealth } from '../hooks/useHealth';
+import { View, Text, StyleSheet } from 'react-native';
+import { Card, Title, List } from 'react-native-paper';
 
 const SettingsScreen = () => {
-  const { dailyGoals, updateDailyGoals } = useHealth();
-  const [notifications, setNotifications] = React.useState(true);
-  const [darkMode, setDarkMode] = React.useState(false);
-
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      
+    <View style={styles.container}>
       <Card style={styles.card}>
         <Card.Content>
-          <Title>🎯 Daily Goals</Title>
-          
+          <Title>⚙️ Settings</Title>
           <List.Item
-            title="Water Goal"
-            description={`Current: ${dailyGoals.water}ml`}
-            right={() => <Text>{dailyGoals.water}ml</Text>}
+            title="Daily Goals"
+            description="Set your daily targets"
+            left={props => <List.Icon {...props} icon="target" />}
+            onPress={() => {}}
           />
-          
           <List.Item
-            title="Exercise Goal"
-            description={`Current: ${dailyGoals.exercise} minutes`}
-            right={() => <Text>{dailyGoals.exercise}min</Text>}
+            title="Notifications"
+            description="Manage reminders"
+            left={props => <List.Icon {...props} icon="bell" />}
+            onPress={() => {}}
           />
-          
           <List.Item
-            title="Calories Goal"
-            description={`Current: ${dailyGoals.calories} kcal`}
-            right={() => <Text>{dailyGoals.calories}kcal</Text>}
-          />
-          
-          <List.Item
-            title="Sleep Goal"
-            description={`Current: ${dailyGoals.sleep} hours`}
-            right={() => <Text>{dailyGoals.sleep}h</Text>}
+            title="Appearance"
+            description="Theme and display"
+            left={props => <List.Icon {...props} icon="palette" />}
+            onPress={() => {}}
           />
         </Card.Content>
       </Card>
-
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>🔔 Notifications</Title>
-          <List.Item
-            title="Enable Notifications"
-            description="Reminders to drink water, exercise, etc."
-            right={() => (
-              <Switch
-                value={notifications}
-                onValueChange={setNotifications}
-              />
-            )}
-          />
-        </Card.Content>
-      </Card>
-
-      <Card style={styles.card}>
-        <Card.Content>
-          <Title>🎨 Appearance</Title>
-          <List.Item
-            title="Dark Mode"
-            right={() => (
-              <Switch
-                value={darkMode}
-                onValueChange={setDarkMode}
-              />
-            )}
-          />
-        </Card.Content>
-      </Card>
-    </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
     padding: 16,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginVertical: 20,
-    color: '#1e90ff',
+    backgroundColor: '#f5f5f5',
   },
   card: {
-    marginBottom: 16,
-    elevation: 4,
+    marginTop: 20,
   },
 });
 
