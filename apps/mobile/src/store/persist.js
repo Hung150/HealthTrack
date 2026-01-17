@@ -1,40 +1,33 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const HEALTH_STORAGE_KEY = '@HealthTrack:healthState';
-
-// Save state to AsyncStorage
+// Lưu state
 export const saveHealthState = async (state) => {
   try {
-    const jsonValue = JSON.stringify(state);
-    await AsyncStorage.setItem(HEALTH_STORAGE_KEY, jsonValue);
-    console.log('✅ Health state saved to AsyncStorage');
-  } catch (error) {
-    console.error('❌ Failed to save health state:', error);
+    const jsonValue = JSON.stringify({
+      ...state,
+      // Đảm bảo history luôn là array
+      history: state.history || [],
+    });
+    await AsyncStorage.setItem('@health_state', jsonValue);
+  } catch (e) {
+    console.error('Failed to save state:', e);
   }
 };
 
-// Load state from AsyncStorage
+// Load state
 export const loadHealthState = async () => {
   try {
-    const jsonValue = await AsyncStorage.getItem(HEALTH_STORAGE_KEY);
-    if (jsonValue !== null) {
-      console.log('✅ Health state loaded from AsyncStorage');
-      return JSON.parse(jsonValue);
+    const jsonValue = await AsyncStorage.getItem('@health_state');
+    if (jsonValue != null) {
+      const parsed = JSON.parse(jsonValue);
+      // Đảm bảo history tồn tại
+      return {
+        ...parsed,
+        history: parsed.history || [],
+      };
     }
-    console.log('ℹ️ No saved health state found');
-    return null;
-  } catch (error) {
-    console.error('❌ Failed to load health state:', error);
-    return null;
+  } catch (e) {
+    console.error('Failed to load state:', e);
   }
-};
-
-// Clear saved state (for testing)
-export const clearHealthState = async () => {
-  try {
-    await AsyncStorage.removeItem(HEALTH_STORAGE_KEY);
-    console.log('🗑️ Health state cleared from AsyncStorage');
-  } catch (error) {
-    console.error('❌ Failed to clear health state:', error);
-  }
+  return null;
 };
