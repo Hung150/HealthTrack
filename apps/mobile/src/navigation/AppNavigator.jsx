@@ -5,6 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import DashboardScreen from '../screens/DashboardScreen';
+import StatisticsScreen from '../screens/StatisticsScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
@@ -22,8 +23,10 @@ function MainTabs() {
 
           if (route.name === 'Dashboard') {
             iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Statistics') {
+            iconName = focused ? 'chart-box' : 'chart-box-outline';
           } else if (route.name === 'History') {
-            iconName = focused ? 'chart-line' : 'chart-line';
+            iconName = focused ? 'history' : 'history';
           } else if (route.name === 'Settings') {
             iconName = focused ? 'cog' : 'cog-outline';
           }
@@ -31,7 +34,7 @@ function MainTabs() {
           return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#1e90ff',
-        tabBarInactiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#888',
         tabBarStyle: {
           backgroundColor: '#ffffff',
           borderTopWidth: 1,
@@ -61,6 +64,14 @@ function MainTabs() {
         options={{
           title: 'HealthTrack Dashboard',
           tabBarLabel: 'Dashboard',
+        }}
+      />
+      <Tab.Screen 
+        name="Statistics" 
+        component={StatisticsScreen}
+        options={{
+          title: 'Statistics',
+          tabBarLabel: 'Stats',
         }}
       />
       <Tab.Screen 
