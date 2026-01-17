@@ -29,6 +29,17 @@ const healthSlice = createSlice({
     updateSleepHours: (state, action) => {
       state.sleepHours = action.payload;
     },
+    // THÊM ACTION MỚI
+    updateDailyGoals: (state, action) => {
+      state.dailyGoals = {
+        ...state.dailyGoals,
+        ...action.payload,
+      };
+    },
+    // Thêm action reset daily goals
+    resetDailyGoals: (state) => {
+      state.dailyGoals = initialState.dailyGoals;
+    },
   },
 });
 
@@ -37,6 +48,8 @@ export const {
   updateCaloriesBurned,
   updateExerciseMinutes,
   updateSleepHours,
+  updateDailyGoals,    
+  resetDailyGoals,
 } = healthSlice.actions;
 
 export default healthSlice.reducer;
