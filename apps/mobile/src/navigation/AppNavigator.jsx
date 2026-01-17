@@ -8,7 +8,8 @@ import DashboardScreen from '../screens/DashboardScreen';
 import StatisticsScreen from '../screens/StatisticsScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import GoalsScreen from '../screens/GoalsScreen'; 
+import GoalsScreen from '../screens/GoalsScreen';
+import NotificationsScreen from '../screens/NotificationsScreen';
 
 // Tạo Stack và Tab Navigators
 const Stack = createNativeStackNavigator();
@@ -124,6 +125,14 @@ export default function AppNavigator() {
           component={GoalsScreen}
           options={{
             title: 'Daily Goals',
+            headerBackTitle: 'Back',
+          }}
+        />
+        <Stack.Screen 
+          name="Notifications" 
+          component={NotificationsScreen}
+          options={{
+            title: 'Notifications',
             headerBackTitle: 'Back',
           }}
         />
