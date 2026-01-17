@@ -6,6 +6,7 @@ import {
   Text, 
   TouchableOpacity 
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useHealth } from '../hooks/useHealth';
 import { resetDailyMetrics } from '../store/healthSlice';
 
@@ -15,6 +16,7 @@ const calculateProgress = (current, goal) => {
 };
 
 const DashboardScreen = () => {
+  const dispatch = useDispatch();
   const {
     waterIntake,
     caloriesBurned,
