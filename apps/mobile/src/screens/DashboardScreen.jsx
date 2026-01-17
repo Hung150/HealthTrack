@@ -7,6 +7,7 @@ import {
   TouchableOpacity 
 } from 'react-native';
 import { useHealth } from '../hooks/useHealth';
+import { resetDailyMetrics } from '../store/healthSlice';
 
 const calculateProgress = (current, goal) => {
   if (goal === 0) return 0;
@@ -32,10 +33,7 @@ const DashboardScreen = () => {
   const sleepProgress = calculateProgress(sleepHours, dailyGoals.sleep);
 
   const handleResetAll = () => {
-    updateWaterIntake(0);
-    updateCaloriesBurned(0);
-    updateExerciseMinutes(0);
-    updateSleepHours(0);
+    dispatch(resetDailyMetrics());
   };
 
   const getProgressColor = (progress) => {
