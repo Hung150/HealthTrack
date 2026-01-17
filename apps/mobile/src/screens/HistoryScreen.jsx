@@ -15,7 +15,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 const { width } = Dimensions.get('window');
 
 const HistoryScreen = () => {
-  const history = useSelector((state) => state.health.history);
+  const healthState = useSelector((state) => state.health);
+  const history = healthState.history || [];
   const [selectedFilter, setSelectedFilter] = useState('all'); // all, week, month
   
   // Format date
