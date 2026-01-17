@@ -8,6 +8,7 @@ import DashboardScreen from '../screens/DashboardScreen';
 import StatisticsScreen from '../screens/StatisticsScreen';
 import HistoryScreen from '../screens/HistoryScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import GoalsScreen from '../screens/GoalsScreen'; 
 
 // Tạo Stack và Tab Navigators
 const Stack = createNativeStackNavigator();
@@ -94,13 +95,21 @@ function MainTabs() {
   );
 }
 
-// Main App Navigator
+// Main App Navigator với Goals Screen
 export default function AppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
+          headerStyle: {
+            backgroundColor: '#1e90ff',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 20,
+          },
+          headerTitleAlign: 'center',
         }}
       >
         <Stack.Screen 
@@ -108,6 +117,14 @@ export default function AppNavigator() {
           component={MainTabs} 
           options={{
             headerShown: false,
+          }}
+        />
+        <Stack.Screen 
+          name="Goals" 
+          component={GoalsScreen}
+          options={{
+            title: 'Daily Goals',
+            headerBackTitle: 'Back',
           }}
         />
       </Stack.Navigator>
